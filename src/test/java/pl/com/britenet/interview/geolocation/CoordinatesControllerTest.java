@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
+// todo migrate to Testcontainers
+@Deprecated
 class CoordinatesControllerTest {
 
   private static EmbeddedServer server;
@@ -22,11 +24,11 @@ class CoordinatesControllerTest {
   @BeforeAll
   static void setUp() {
     server =
-            ApplicationContext.run(
-                    EmbeddedServer.class,
-                    Map.of(
-                            MongoSettings.MONGODB_URI,
-                            "mongodb://localhost:" + SocketUtils.findAvailableTcpPort()));
+        ApplicationContext.run(
+            EmbeddedServer.class,
+            Map.of(
+                MongoSettings.MONGODB_URI,
+                "mongodb://localhost:" + SocketUtils.findAvailableTcpPort()));
     client = server.getApplicationContext().getBean(CoordinatesControllerTestClient.class);
   }
 
@@ -53,10 +55,10 @@ class CoordinatesControllerTest {
     final long givenLongitude = 1423412;
     final Double expectedLongitude = 142.3412;
     final AddDeviceLocationRequest givenAddCoordinatesRequest =
-            new AddDeviceLocationRequest(givenDeviceId, givenLongitude, givenLatitude);
+        new AddDeviceLocationRequest(givenDeviceId, givenLongitude, givenLatitude);
     // when
     final DeviceLocation coordinates =
-            client.addCoordinates(givenAddCoordinatesRequest).blockingGet();
+        client.addCoordinates(givenAddCoordinatesRequest).blockingGet();
 
     // then
     final TestSubscriber<DeviceLocation> testSubscriber = new TestSubscriber<>();

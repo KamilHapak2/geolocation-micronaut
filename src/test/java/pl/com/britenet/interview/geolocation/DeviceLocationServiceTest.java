@@ -31,7 +31,7 @@ class DeviceLocationServiceTest {
 
     // given
     final AddDeviceLocationRequest addLocationRequest =
-            new AddDeviceLocationRequest("1", 78000L, 350000L);
+        new AddDeviceLocationRequest("1", 78000L, 350000L);
     final Double expectedLongitude = 7.8;
     final Double expectedLatitude = 35.0;
     final long expectedTimestamp = 123L;
