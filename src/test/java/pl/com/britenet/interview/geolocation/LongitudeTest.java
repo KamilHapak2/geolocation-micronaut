@@ -1,5 +1,6 @@
 package pl.com.britenet.interview.geolocation;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -8,6 +9,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@DisplayName("Longitude object creation tests")
 class LongitudeTest {
 
   private static Stream<Double> getInvalidLongitude() {
@@ -19,6 +21,7 @@ class LongitudeTest {
   }
 
   @ParameterizedTest
+  @DisplayName("Should fail due to invalid longitude")
   @MethodSource("getInvalidLongitude")
   void shouldFailDueToInvalidLongitude(Double value) {
 
@@ -30,6 +33,7 @@ class LongitudeTest {
   }
 
   @ParameterizedTest
+  @DisplayName("Should create Longitude")
   @MethodSource("getValidLongitude")
   void shouldCreateLongitude(Double value) {
 

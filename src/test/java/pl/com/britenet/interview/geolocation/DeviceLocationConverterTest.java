@@ -1,6 +1,7 @@
 package pl.com.britenet.interview.geolocation;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Clock;
@@ -22,6 +23,7 @@ class DeviceLocationConverterTest {
   }
 
   @Test
+  @DisplayName("Should create from AddDeviceLocationRequest")
   void shouldCreateFromAddDeviceLocationRequest() {
 
     // given

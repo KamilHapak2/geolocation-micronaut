@@ -6,10 +6,7 @@ import io.micronaut.context.ApplicationContext;
 import io.micronaut.runtime.server.EmbeddedServer;
 import io.reactivex.Flowable;
 import io.reactivex.subscribers.TestSubscriber;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -18,6 +15,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+@DisplayName("DeviceLocationController - Integration tests")
 @Testcontainers
 public class DeviceLocationControllerTest {
 
@@ -53,7 +51,8 @@ public class DeviceLocationControllerTest {
   }
 
   @Test
-  void shouldAddCoordinates() {
+  @DisplayName("Should add device location")
+  void shouldAddDeviceLocation() {
 
     // given
     final String givenDeviceId = "12345";
