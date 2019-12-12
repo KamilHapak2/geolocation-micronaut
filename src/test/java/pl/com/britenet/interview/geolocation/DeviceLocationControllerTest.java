@@ -44,7 +44,7 @@ public class DeviceLocationControllerTest {
     client = server.getApplicationContext().getBean(CoordinatesControllerTestClient.class);
   }
 
-  @AfterEach // todo mozna usunac jesli bedzie tylko 1 test
+  @AfterEach
   void tearDown() {
     ApplicationContext applicationContext = server.getApplicationContext();
     MongoClient mongoClient = applicationContext.getBean(MongoClient.class);
