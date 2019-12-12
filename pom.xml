@@ -17,7 +17,6 @@
         <lombok.version>1.18.10</lombok.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <exec.mainClass>pl.com.britenet.interview.geolocation.Application</exec.mainClass>
-        <embed.mongo.version>2.2.0</embed.mongo.version>
         <maven-jar-plugin.version>3.1.2</maven-jar-plugin.version>
         <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
         <mockito-core.version>3.1.0</mockito-core.version>
@@ -107,13 +106,7 @@
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
         </dependency>
-        <dependency>
-            <groupId>de.flapdoodle.embed</groupId>
-            <artifactId>de.flapdoodle.embed.mongo</artifactId>
-            <version>${embed.mongo.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+      </dependencies>
     <build>
         <plugins>
             <plugin>
