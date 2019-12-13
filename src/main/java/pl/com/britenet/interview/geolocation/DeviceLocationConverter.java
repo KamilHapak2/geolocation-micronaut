@@ -8,7 +8,7 @@ import java.time.Clock;
 
 @Prototype
 @RequiredArgsConstructor
-public class DeviceLocationConverter {
+class DeviceLocationConverter {
 
   public static final int SCALE = 4;
 
@@ -24,5 +24,13 @@ public class DeviceLocationConverter {
 
   private double toDoubleValue(Long value) {
     return BigDecimal.valueOf(value, SCALE).doubleValue();
+  }
+
+  DeviceLocationDetails from(DeviceLocation deviceLocation) {
+    return new DeviceLocationDetails(
+        deviceLocation.getDeviceId(),
+        deviceLocation.getTimestamp(),
+        deviceLocation.getLatitude().getValue(),
+        deviceLocation.getLongitude().getValue());
   }
 }
