@@ -18,9 +18,9 @@ public class Longitude {
   @BsonCreator
   public static Longitude of(@BsonProperty("value") Double value) {
 
-    if (value > MAX_VALUE || value < MIN_VALUE) {
+    if (value > MAX_VALUE || MIN_VALUE > value) {
       throw new IllegalArgumentException(
-              String.format("Value has to be between %s and %s", MIN_VALUE, MAX_VALUE));
+          String.format("Value has to be between %s and %s", MIN_VALUE, MAX_VALUE));
     }
     return new Longitude(value);
   }

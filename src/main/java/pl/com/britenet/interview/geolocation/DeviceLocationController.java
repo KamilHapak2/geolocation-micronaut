@@ -12,12 +12,13 @@ public class DeviceLocationController implements DeviceLocationOperation {
   private final DeviceLocationService coordinatesService;
 
   @Override
-  public Single<DeviceLocation> addCoordinates(AddDeviceLocationRequest addCoordinatesRequest) {
+  public Single<DeviceLocationDetails> addCoordinates(
+      AddDeviceLocationRequest addCoordinatesRequest) {
     return coordinatesService.save(addCoordinatesRequest);
   }
 
   @Override
-  public Publisher<DeviceLocation> getCoordinates(String deviceId) {
+  public Publisher<DeviceLocationDetails> getCoordinates(String deviceId) {
     return coordinatesService.find(deviceId);
   }
 }

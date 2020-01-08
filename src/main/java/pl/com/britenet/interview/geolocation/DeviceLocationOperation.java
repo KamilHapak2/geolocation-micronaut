@@ -6,12 +6,11 @@ import io.micronaut.http.annotation.Post;
 import io.reactivex.Single;
 import org.reactivestreams.Publisher;
 
-// todo return DeviceLocationDetails
 public interface DeviceLocationOperation {
 
   @Post
-  Single<DeviceLocation> addCoordinates(@Body AddDeviceLocationRequest addCoordinates);
+  Single<DeviceLocationDetails> addCoordinates(@Body AddDeviceLocationRequest addCoordinates);
 
   @Get("/{deviceId}")
-  Publisher<DeviceLocation> getCoordinates(String deviceId);
+  Publisher<DeviceLocationDetails> getCoordinates(String deviceId);
 }

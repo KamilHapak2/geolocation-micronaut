@@ -21,7 +21,7 @@ public class DeviceLocationControllerTest {
 
   @Container
   public static GenericContainer mongoContainer =
-      new GenericContainer<>("mongo:4.2.0").withExposedPorts(27017);;
+      new GenericContainer<>("mongo:4.2.0").withExposedPorts(27017);
 
   private static EmbeddedServer server;
   private static CoordinatesControllerTestClient client;
@@ -42,8 +42,8 @@ public class DeviceLocationControllerTest {
     client = server.getApplicationContext().getBean(CoordinatesControllerTestClient.class);
   }
 
-  @AfterEach
-  void tearDown() {
+  @BeforeEach
+  void prepareDatabase() {
     ApplicationContext applicationContext = server.getApplicationContext();
     MongoClient mongoClient = applicationContext.getBean(MongoClient.class);
     MongoConfiguration config = applicationContext.getBean(MongoConfiguration.class);
@@ -57,27 +57,25 @@ public class DeviceLocationControllerTest {
     // given
     final String givenDeviceId = "12345";
     final long givenLatitude = -505430;
-    final Double expectedLatitude = -50.5430;
+    final double expectedLatitude = -50.5430;
     final long givenLongitude = 1423412;
-    final Double expectedLongitude = 142.3412;
+    final double expectedLongitude = 142.3412;
     final AddDeviceLocationRequest givenAddCoordinatesRequest =
         new AddDeviceLocationRequest(givenDeviceId, givenLongitude, givenLatitude);
 
     // when
-    final DeviceLocation coordinates =
+    final DeviceLocationDetails coordinates =
         client.addCoordinates(givenAddCoordinatesRequest).blockingGet();
 
     // then
-    final TestSubscriber<DeviceLocation> testSubscriber = new TestSubscriber<>();
+    final TestSubscriber<DeviceLocationDetails> testSubscriber = new TestSubscriber<>();
     client.getCoordinates(givenDeviceId).subscribe(testSubscriber);
     assertAll(
-        () -> {
-          testSubscriber.awaitCount(1);
-          testSubscriber.assertValue(v -> v.getDeviceId().equals(givenDeviceId));
-          testSubscriber.assertValue(v -> v.getLatitude().getValue().equals(expectedLatitude));
-          testSubscriber.assertValue(v -> v.getLongitude().getValue().equals(expectedLongitude));
-          testSubscriber.assertValue(v -> v.getTimestamp() == coordinates.getTimestamp());
-          testSubscriber.assertComplete();
-        });
+        () -> testSubscriber.awaitCount(1),
+        () -> testSubscriber.assertValue(v -> v.getDeviceId().equals(givenDeviceId)),
+        () -> testSubscriber.assertValue(v -> v.getLatitude() == expectedLatitude),
+        () -> testSubscriber.assertValue(v -> v.getLongitude() == expectedLongitude),
+        () -> testSubscriber.assertValue(v -> v.getTimestamp() == coordinates.getTimestamp()),
+        testSubscriber::assertComplete);
   }
 }

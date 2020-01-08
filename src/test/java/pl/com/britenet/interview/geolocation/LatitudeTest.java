@@ -29,7 +29,8 @@ class LatitudeTest {
     assertThrows(
         IllegalArgumentException.class,
         // when
-        () -> Latitude.of(value));
+        () -> Latitude.of(value),
+        String.format("%s is invalid, should fail", value));
   }
 
   @ParameterizedTest
@@ -40,6 +41,6 @@ class LatitudeTest {
     // then
     assertDoesNotThrow(
         // when
-        () -> Latitude.of(value));
+        () -> Latitude.of(value), String.format("%s is correct, should create object", value));
   }
 }

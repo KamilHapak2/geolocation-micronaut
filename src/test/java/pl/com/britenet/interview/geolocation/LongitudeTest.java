@@ -29,7 +29,8 @@ class LongitudeTest {
     assertThrows(
         IllegalArgumentException.class,
         // when
-        () -> Longitude.of(value));
+        () -> Longitude.of(value),
+        String.format("%s is invalid, should fail", value));
   }
 
   @ParameterizedTest
@@ -40,6 +41,6 @@ class LongitudeTest {
     // then
     assertDoesNotThrow(
         // when
-        () -> Longitude.of(value));
+        () -> Longitude.of(value), String.format("%s is correct, should create object", value));
   }
 }
