@@ -18,7 +18,7 @@ public class DeviceLocationController implements DeviceLocationOperation {
   }
 
   @Override
-  public Publisher<DeviceLocationDetails> getCoordinates(String A) {
-    return coordinatesService.find(A);
+  public Publisher<DeviceLocationDetails> getCoordinates(String B) {
+    return coordinatesService.find(B);
   }
 }
